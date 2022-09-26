@@ -1,11 +1,15 @@
 import { textarea, notes } from "./map.js";
-import { active, setActive,resetBtnBgColor, boldBtn, underlineBtn} from "./index.js";
+import {
+  active,
+  setActive,
+  btnBgColor,
+  boldBtn,
+  underlineBtn
+} from "./index.js";
 
-//const selectedText = document.querySelector(".editor");
 const selectedText = document.querySelector(".editor");
 const addNoteBtn = document.querySelector("#add-note");
 let noteList = document.querySelector(".list");
-//let btnList = document.querySelectorAll(".select-note");
 let count = 1;
 
 const noteOneBtn = document.getElementById("0");
@@ -22,17 +26,24 @@ noteOneBtn.addEventListener("click", function (event) {
 });
 
 function showNote(active) {
-  let actText = textarea[notes[active]];
-  
+  let actText = textarea[notes[active][0]];
+
   const textCont = document.getElementById("editorId");
   textCont.innerHTML = actText;
-  //reset button color
-  resetBtnBgColor(boldBtn);
-  resetBtnBgColor(underlineBtn);
+  if (notes[active][1] === true) {
+    boldBtn.style.backgroundColor = btnBgColor;
+  } else {
+    boldBtn.style.backgroundColor = "";
+  }
+  if (notes[active][2] === true) {
+    underlineBtn.style.backgroundColor = btnBgColor;
+  } else {
+    underlineBtn.style.backgroundColor = "";
+  }
 }
 
-function autoSave(currId){
-  textarea[notes[currId]] = selectedText.innerHTML;
+function autoSave(currId) {
+  textarea[notes[currId][0]] = selectedText.innerHTML;
 }
 
 function highlightSelected(oldbtn, newbtn) {
@@ -45,9 +56,9 @@ function highlightSelected(oldbtn, newbtn) {
 addNoteBtn.addEventListener("click", function (event) {
   let div = document.createElement("div");
   let input = document.createElement("input");
-  input.value = "note-" + count;
+  input.value = "Note-" + count;
   input.className = "input-box";
-
+  div.className = "common";
   let btn = document.createElement("button");
   btn.innerHTML = '<img src="./resources/edit-icon.svg" alt="edit" />';
   btn.id = count;
@@ -59,7 +70,7 @@ addNoteBtn.addEventListener("click", function (event) {
   div.appendChild(btn);
   noteList.appendChild(div);
   textarea.push("");
-  notes[count] = count;
+  notes[count] = [count, false, false];
 
   let prevbtnId = active;
   //autoSave
@@ -67,18 +78,12 @@ addNoteBtn.addEventListener("click", function (event) {
   // update the active to the count value.
   setActive(count);
   let newbtnId = active;
-  
+
   showNote(active);
 
   count++;
 
-  //btnList = document.getElementsByClassName("select-note");
-
   highlightSelected(prevbtnId, newbtnId);
-
-  
-
-
 
   // We need to add the event listener every time when a new element is add to div.list
 

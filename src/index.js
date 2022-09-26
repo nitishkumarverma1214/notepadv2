@@ -1,7 +1,7 @@
 import { textarea, notes } from "./map.js";
 // active will mark the active note. it is 0-indexed.
 export let active = 0;
-export const btnBgColor = "#888";
+export const btnBgColor = "#ffffff";
 export const boldBtn = document.querySelector(".bold-div");
 
 export const underlineBtn = document.querySelector(".underline-div");
@@ -12,36 +12,45 @@ const saveBtn = document.querySelector(".save-div");
 
 const selectedText = document.querySelector(".editor");
 
-
-export function resetBtnBgColor(btn){
-  btn.style.backgroundColor ="";
+export function resetBtnBgColor(btn) {
+  btn.style.backgroundColor = "";
 }
 
 boldBtn.addEventListener("click", function (event) {
   if (selectedText.innerText.length !== 0) {
     document.execCommand("bold", false, null);
     textarea[active] = selectedText.innerHTML;
-    // boldBtn.style.backgroundColor = btnBgColor;
+
+    if (notes[active][1]) {
+      boldBtn.style.backgroundColor = "";
+      notes[active][1] = false;
+    } else {
+      boldBtn.style.backgroundColor = btnBgColor;
+      notes[active][1] = true;
+    }
   } else {
     alert("Nothing to bold");
   }
 });
 
 underlineBtn.addEventListener("click", function (event) {
-  if (selectedText.innerHTML.length !== 0) {
+  if (selectedText.innerText.length !== 0) {
     document.execCommand("underline", false, null);
-    // underlineBtn.style.backgroundColor = btnBgColor;
+    if (notes[active][2]) {
+      underlineBtn.style.backgroundColor = "";
+
+      notes[active][2] = false;
+    } else {
+      underlineBtn.style.backgroundColor = btnBgColor;
+      notes[active][2] = true;
+    }
   } else {
     alert("Nothing to underline");
-   
-    
   }
 });
 
 copyBtn.addEventListener("click", function (event) {
- 
   const content = document.getElementById("editorId").textContent;
-  console.log('content:'+content);
   if (content.length !== 0) {
     navigator.clipboard.writeText(content).then(
       () => {
@@ -67,14 +76,4 @@ export function setActive(act) {
   active = act;
 }
 
-// reset the bold and underline when the content of text is empty
 
-selectedText.addEventListener(
-  "paste",
-  function (event) {
-    // let temp =
-    console.log(selectedText.innerHTML);
-    //  selectedText.innerHTML =  selectedText.innerText;
-  },
-  false
-);

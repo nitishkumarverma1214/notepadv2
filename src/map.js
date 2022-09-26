@@ -7,6 +7,5 @@ export let textarea = [""];
 3. value of underline: true/false
 notes = {1:[0,false,false]}
 */
-export let notes = { 0: 0 };
+export let notes = { 0: [0, false, false] };
 
-// textarea[areaid]

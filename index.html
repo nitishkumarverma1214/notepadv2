@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/styles.css" />
-    <link rel="icon" href="./resources/notepad.png">
+    <link rel="icon" href="./resources/notepad.png" />
     <title>Notepad</title>
   </head>
   <body>
@@ -14,10 +14,7 @@
         <div class="logo-img">
           <img src="./resources/notepad-icon.svg" alt="logo" />
         </div>
-        <ul class="nav-content">
-          <li>Editor</li>
-          <li><a id="developers" href="#made-by">Developers</a> </li>
-        </ul>
+        <div class="titleName"><span>Simple Note</span></div>
       </nav>
 
       <main class="container">
@@ -26,8 +23,8 @@
             <img src="./resources/add-note.svg" />
           </button>
           <div class="list">
-            <div class="list1">
-              <input class="input-box" value="note-0"/><button
+            <div class="list1 common">
+              <input class="input-box" value="Note-0" /><button
                 class="select-note"
                 id="0"
               >
@@ -40,9 +37,9 @@
           <div
             class="editor"
             id="editorId"
-            contenteditable="true" data-text="Enter text here" 
+            contenteditable="true"
+            data-text="Enter text here"
           >
-            <!-- <textarea id="editorId" placeholder="Write Here ..."></textarea> -->
           </div>
           <aside class="tool-bar">
             <div class="all-buttons">
@@ -63,7 +60,26 @@
         </section>
       </main>
       <footer id="made-by">
-        Made with <span>♥</span> by Nitish, Mohit and Paryank
+        Made with <span>♥</span> by
+        <a
+          class="linkedIn"
+          href="https://www.linkedin.com/in/nitish-kumar-verma-3840a8188/"
+          target="”_blank”"
+          >Nitish</a
+        >,
+        <a
+          class="linkedIn"
+          href="https://www.linkedin.com/in/mohit-bhatt-079202208/"
+          target="”_blank”"
+          >Mohit</a
+        >
+        and
+        <a
+          class="linkedIn"
+          href="https://www.linkedin.com/in/paryank-namdeo-a55880194/"
+          target="”_blank”"
+          >Paryank</a
+        >
       </footer>
     </div>
 
