@@ -20,8 +20,9 @@ boldBtn.addEventListener("click", function (event) {
   if (selectedText.innerText.length !== 0) {
     document.execCommand("bold", false, null);
     textarea[active] = selectedText.innerHTML;
+    let btnState = document.queryCommandValue("bold");
 
-    if (notes[active][1]) {
+    if (btnState!=='true') {
       boldBtn.style.backgroundColor = "";
       notes[active][1] = false;
     } else {
@@ -36,13 +37,15 @@ boldBtn.addEventListener("click", function (event) {
 underlineBtn.addEventListener("click", function (event) {
   if (selectedText.innerText.length !== 0) {
     document.execCommand("underline", false, null);
-    if (notes[active][2]) {
-      underlineBtn.style.backgroundColor = "";
-
-      notes[active][2] = false;
-    } else {
+    let btnState = document.queryCommandValue("underline");
+    
+    if (btnState ==="true") {
       underlineBtn.style.backgroundColor = btnBgColor;
       notes[active][2] = true;
+    } else {
+      
+      underlineBtn.style.backgroundColor = "";
+      notes[active][2] = false;
     }
   } else {
     alert("Nothing to underline");
